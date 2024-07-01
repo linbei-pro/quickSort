@@ -13,26 +13,29 @@
     }
  }
  
- 
+ void swap(int *num, int i, int j) {
+    int tmp = nums[i];
+    nums[i] = nums[j];
+    nums[j] = tmp;
+ }
  
  int partition(int arr[], int left, int right)
  {
-    int base = arr[left];
-    while (left < right) 
+    int i=left,j=right;
+    while (i < j) 
     {
-        while (left < right && arr[right] >= base) 
+        while (i < j && arr[j] >= arr[left]) 
         {
-            right--;
+            j--;
         }
-        arr[left] = arr[right];
-        while (left < right && arr[left] <= base) 
+        while ( i < j && arr[i] <= arr[left]) 
         {
-            left++;
+            i++;
         }
-        arr[right] = arr[left];
+        swap(arr,i,j);
     }
-    arr[left] = base;
-    return left;
+    swap(arr,i,left);
+    return i;
   }
 
 
